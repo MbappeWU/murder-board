@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-label="Murder Board: get grilled by AI before you get grilled by humans">
+  <title>Murder Board: get grilled by AI before you get grilled by humans</title>
+  <defs>
+    <radialGradient id="spot" cx="50%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#ff4d5e" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#ff4d5e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0d10"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="400" rx="20" fill="url(#bg)"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="72" y="104" fill="#ff4d5e" font-size="20" font-weight="700" letter-spacing="3">MURDER BOARD · 灵魂拷问</text>
+    <text x="68" y="180" fill="#f0f3f6" font-size="58" font-weight="800" letter-spacing="-1.5">Get grilled by AI</text>
+    <text x="68" y="246" fill="#f0f3f6" font-size="58" font-weight="800" letter-spacing="-1.5">before you get grilled</text>
+    <text x="68" y="312" fill="#f0f3f6" font-size="58" font-weight="800" letter-spacing="-1.5">by humans.</text>
+    <text x="72" y="360" fill="#8b949e" font-size="18">Claude Code · Codex · Cursor · Gemini CLI · OpenClaw · ChatGPT · DeepSeek · Kimi</text>
+  </g>
+  <!-- The panel -->
+  <g transform="translate(830 70)">
+    <ellipse cx="170" cy="300" rx="190" ry="60" fill="url(#spot)"/>
+    <g fill="#2d333b">
+      <circle cx="40" cy="60" r="24"/><path d="M4 124 a36 36 0 0 1 72 0 z"/>
+      <circle cx="130" cy="44" r="24"/><path d="M94 108 a36 36 0 0 1 72 0 z"/>
+      <circle cx="220" cy="44" r="24"/><path d="M184 108 a36 36 0 0 1 72 0 z"/>
+      <circle cx="310" cy="60" r="24"/><path d="M274 124 a36 36 0 0 1 72 0 z"/>
+    </g>
+    <rect x="-10" y="118" width="360" height="30" rx="8" fill="#3a414a"/>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#c9d1d9" text-anchor="middle">
+      <rect x="12" y="124" width="56" height="18" rx="3" fill="#20262d"/><text x="40" y="137">CEO</text>
+      <rect x="102" y="124" width="56" height="18" rx="3" fill="#20262d"/><text x="130" y="137">CFO</text>
+      <rect x="186" y="124" width="68" height="18" rx="3" fill="#20262d"/><text x="220" y="137">VP ENG</text>
+      <rect x="272" y="124" width="76" height="18" rx="3" fill="#20262d"/><text x="310" y="137">SKEPTIC</text>
+    </g>
+    <circle cx="170" cy="228" r="26" fill="#ff4d5e"/>
+    <path d="M130 298 a40 40 0 0 1 80 0 z" fill="#ff4d5e"/>
+    <text x="170" y="326" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#ffb3ba" letter-spacing="2">YOU</text>
+  </g>
+</svg>

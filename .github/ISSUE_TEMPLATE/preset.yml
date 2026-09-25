@@ -1,0 +1,28 @@
+name: 🎯 New preset
+description: Propose a panel for a high-stakes moment that isn't covered yet.
+title: "[Preset] "
+labels: ["preset"]
+body:
+  - type: input
+    id: moment
+    attributes:
+      label: The moment
+      placeholder: "Residency interview / pharma FDA advisory committee / 项目结题验收"
+    validations:
+      required: true
+  - type: textarea
+    id: seats
+    attributes:
+      label: Who sits on the panel, and what each of them cares about
+    validations:
+      required: true
+  - type: textarea
+    id: questions
+    attributes:
+      label: 3–6 questions that usually decide it
+    validations:
+      required: true
+  - type: textarea
+    id: rules
+    attributes:
+      label: Special rules (format, timing, what gets penalized)

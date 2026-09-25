@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="575" viewBox="0 0 860 575" role="img" aria-label="murder-board · exec review drill">
+<title>murder-board · exec review drill</title>
+<style>
+text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', 'PingFang SC', 'Microsoft YaHei', monospace;font-size:13.5px}
+@keyframes a0{0%,1.50%{opacity:0;transform:translateY(4px)}3.00%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l0{animation:a0 20.0s linear infinite;opacity:0}
+@keyframes a1{0%,5.00%{opacity:0;transform:translateY(4px)}6.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l1{animation:a1 20.0s linear infinite;opacity:0}
+@keyframes a3{0%,13.00%{opacity:0;transform:translateY(4px)}14.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l3{animation:a3 20.0s linear infinite;opacity:0}
+@keyframes a4{0%,15.50%{opacity:0;transform:translateY(4px)}17.00%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l4{animation:a4 20.0s linear infinite;opacity:0}
+@keyframes a5{0%,18.00%{opacity:0;transform:translateY(4px)}19.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l5{animation:a5 20.0s linear infinite;opacity:0}
+@keyframes a6{0%,20.50%{opacity:0;transform:translateY(4px)}22.00%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l6{animation:a6 20.0s linear infinite;opacity:0}
+@keyframes a7{0%,23.00%{opacity:0;transform:translateY(4px)}24.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l7{animation:a7 20.0s linear infinite;opacity:0}
+@keyframes a9{0%,27.00%{opacity:0;transform:translateY(4px)}28.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l9{animation:a9 20.0s linear infinite;opacity:0}
+@keyframes a11{0%,32.00%{opacity:0;transform:translateY(4px)}33.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l11{animation:a11 20.0s linear infinite;opacity:0}
+@keyframes a12{0%,34.50%{opacity:0;transform:translateY(4px)}36.00%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l12{animation:a12 20.0s linear infinite;opacity:0}
+@keyframes a14{0%,41.00%{opacity:0;transform:translateY(4px)}42.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l14{animation:a14 20.0s linear infinite;opacity:0}
+@keyframes a15{0%,43.50%{opacity:0;transform:translateY(4px)}45.00%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l15{animation:a15 20.0s linear infinite;opacity:0}
+@keyframes a17{0%,50.00%{opacity:0;transform:translateY(4px)}51.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l17{animation:a17 20.0s linear infinite;opacity:0}
+@keyframes a18{0%,53.00%{opacity:0;transform:translateY(4px)}54.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l18{animation:a18 20.0s linear infinite;opacity:0}
+@keyframes a19{0%,56.50%{opacity:0;transform:translateY(4px)}58.00%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l19{animation:a19 20.0s linear infinite;opacity:0}
+@keyframes a20{0%,58.50%{opacity:0;transform:translateY(4px)}60.00%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l20{animation:a20 20.0s linear infinite;opacity:0}
+@keyframes a22{0%,64.00%{opacity:0;transform:translateY(4px)}65.50%,95%{opacity:1;transform:none}100%{opacity:0}}
+.l22{animation:a22 20.0s linear infinite;opacity:0}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.cursor{animation:blink 1s step-end infinite}
+@media (prefers-reduced-motion: reduce){ .l0{animation:none;opacity:1} .l1{animation:none;opacity:1} .l3{animation:none;opacity:1} .l4{animation:none;opacity:1} .l5{animation:none;opacity:1} .l6{animation:none;opacity:1} .l7{animation:none;opacity:1} .l9{animation:none;opacity:1} .l11{animation:none;opacity:1} .l12{animation:none;opacity:1} .l14{animation:none;opacity:1} .l15{animation:none;opacity:1} .l17{animation:none;opacity:1} .l18{animation:none;opacity:1} .l19{animation:none;opacity:1} .l20{animation:none;opacity:1} .l22{animation:none;opacity:1} .cursor{animation:none} }
+</style>
+<rect width="860" height="575" rx="12" fill="#0d1117"/>
+<circle cx="24" cy="20" r="6" fill="#ff5f57"/><circle cx="44" cy="20" r="6" fill="#febc2e"/><circle cx="64" cy="20" r="6" fill="#28c840"/>
+<text x="430.0" y="24" text-anchor="middle" fill="#8b949e" style="font-size:12px">murder-board · exec review drill</text>
+<line x1="0" y1="38" x2="860" y2="38" stroke="#21262d"/>
+<text class="l0" x="26" y="62" xml:space="preserve"><tspan fill="#8b949e">$ </tspan><tspan fill="#e6edf3">claude</tspan></text>
+<text class="l1" x="26" y="83" xml:space="preserve"><tspan fill="#79c0ff">&gt; murder-board: prep me for Thursday&#x27;s exec review. Deck: ./payments-rewrite.pdf</tspan></text>
+<text class="l3" x="26" y="125" xml:space="preserve"><tspan fill="#ff7b72" font-weight="700">● </tspan><tspan fill="#e6edf3" font-weight="700">Recon: here&#x27;s what the panel sees</tspan></text>
+<text class="l4" x="26" y="146" xml:space="preserve"><tspan fill="#8b949e">  The ask: 4 engineers for 2 quarters (about $450K).</tspan></text>
+<text class="l5" x="26" y="167" xml:space="preserve"><tspan fill="#f0b429">  ⚠ Slide 4 says 3-month payback. Slide 9 implies 11 months.</tspan></text>
+<text class="l6" x="26" y="188" xml:space="preserve"><tspan fill="#f0b429">  ⚠ Last quarter the team shipped 2 of 5 commitments.</tspan></text>
+<text class="l7" x="26" y="209" xml:space="preserve"><tspan fill="#f0b429">  ⚠ No alternatives considered: patch, buy, or partial rewrite.</tspan></text>
+<text class="l9" x="26" y="251" xml:space="preserve"><tspan fill="#ff7b72">● </tspan><tspan fill="#e6edf3">Panel: </tspan><tspan fill="#8b949e">Priya Raman CEO · Dana Whitfield CFO · Marcus Lee VP Eng · Tom Becker</tspan></text>
+<text class="l11" x="26" y="293" xml:space="preserve"><tspan fill="#ff7b72">Priya Raman, CEO: </tspan><tspan fill="#e6edf3">You&#x27;re asking for four engineers. Last quarter you shipped</tspan></text>
+<text class="l12" x="26" y="314" xml:space="preserve"><tspan fill="#e6edf3">two of five commitments. Why should I believe this plan?</tspan></text>
+<text class="l14" x="26" y="356" xml:space="preserve"><tspan fill="#79c0ff">&gt; Last quarter was unusual. The migration turned out much bigger than</tspan></text>
+<text class="l15" x="26" y="377" xml:space="preserve"><tspan fill="#79c0ff">  anyone expected, priorities changed halfway through, and…</tspan></text>
+<text class="l17" x="26" y="419" xml:space="preserve"><tspan fill="#e6edf3">Directness </tspan><tspan fill="#ff7b72">●</tspan><tspan fill="#3b434d">○○○○</tspan><tspan fill="#e6edf3">  Evidence </tspan><tspan fill="#ff7b72">●</tspan><tspan fill="#3b434d">○○○○</tspan><tspan fill="#e6edf3">  Honesty </tspan><tspan fill="#f0b429">●●●</tspan><tspan fill="#3b434d">○○</tspan><tspan fill="#e6edf3">  Brevity </tspan><tspan fill="#ff7b72">●●</tspan><tspan fill="#3b434d">○○○</tspan><tspan fill="#e6edf3">  Composure </tspan><tspan fill="#f0b429">●●●</tspan><tspan fill="#3b434d">○○</tspan></text>
+<text class="l18" x="26" y="440" xml:space="preserve"><tspan fill="#8b949e">Diagnosis: you opened with reasons. She asked “why believe you”, not “what went wrong”.</tspan></text>
+<text class="l19" x="26" y="461" xml:space="preserve"><tspan fill="#56d364">Say this instead: “Fair. We shipped 2 of 5 because I underestimated the migration</tspan></text>
+<text class="l20" x="26" y="482" xml:space="preserve"><tspan fill="#56d364">by six weeks. Give me two engineers now, two more only if we hit the checkpoint.”</tspan></text>
+<text class="l22" x="26" y="524" xml:space="preserve"><tspan fill="#8b949e">Kill list: 8 of 10 questions left · readiness so far 41/100 · </tspan><tspan fill="#e6edf3">next: Dana Whitfield, CFO</tspan></text>
+<rect class="cursor" x="26" y="531" width="8" height="16" fill="#8b949e"/>
+</svg>
