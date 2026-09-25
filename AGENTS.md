@@ -10,7 +10,7 @@ This file is for agents that are *editing* this repository.
 - `skills/<name>/references/`: detail loaded on demand. Keep each `SKILL.md` body under 500 lines.
 - `portable/en/`: generated single-file prompts for chat apps. Never edit by hand.
 - `portable/zh-CN/`: hand-maintained Chinese versions of the portable prompts.
-- `docs/`: the GitHub Pages site, built by `scripts/build-site.mjs`.
+- `site/index.html`: the GitHub Pages template. `scripts/build-site.mjs` injects the portable prompts and writes the site to `_site/` (not committed).
 - `.claude-plugin/`: Claude Code plugin and marketplace manifests.
 
 ## After changing a skill
