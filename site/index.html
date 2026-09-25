@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murder Board · Get grilled by AI before you get grilled by humans</title>
+<meta name="description" content="A hostile-but-fair AI panel that reads your deck, asks the questions most likely to sink you, scores every answer and writes your prep sheet. Free skills for Claude Code, Codex, Cursor, Gemini CLI, and a copy-paste prompt for ChatGPT, Claude, DeepSeek, Kimi and Doubao.">
+<meta property="og:title" content="Murder Board · 灵魂拷问">
+<meta property="og:description" content="Get grilled by AI before you get grilled by humans. 在老板拷问你之前，先让 AI 灵魂拷问你。">
+<meta property="og:image" content="https://mbappewu.github.io/murder-board/social-card.png">
+<meta property="og:url" content="https://mbappewu.github.io/murder-board/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --ink: #151515;
+    --muted: #5f6368;
+    --line: #e3e3df;
+    --accent: #d7263d;
+    --accent-ink: #ffffff;
+    --ok: #1f8a4c;
+    --code-bg: #111418;
+    --code-ink: #e8eaed;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1013; --surface: #161a1f; --ink: #eceef1; --muted: #9aa1ab; --line: #262b33;
+      --accent: #ff4d5e; --code-bg: #0a0c0f; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1013; --surface: #161a1f; --ink: #eceef1; --muted: #9aa1ab; --line: #262b33;
+    --accent: #ff4d5e; --code-bg: #0a0c0f; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Roboto, Helvetica, Arial, sans-serif;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -.01em; text-decoration: none; }
+  .brand svg { width: 28px; height: 28px; }
+  .top-actions { display: flex; gap: 8px; align-items: center; }
+  .pill { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; white-space: nowrap; }
+  .pill:hover { border-color: var(--muted); }
+  .hero { padding: 40px 0 28px; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+  h1 { font-size: clamp(32px, 6vw, 58px); line-height: 1.05; letter-spacing: -.03em; margin: 12px 0 16px; max-width: 16ch; }
+  .lede { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 60ch; margin: 0 0 24px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { border: 0; border-radius: 10px; padding: 12px 18px; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 22px; }
+  section { margin: 28px 0; }
+  h2 { font-size: 24px; letter-spacing: -.02em; margin: 0 0 14px; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+  .tab { border: 1px solid var(--line); background: transparent; color: var(--ink); padding: 8px 12px; border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; }
+  .tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .skill-desc { color: var(--muted); margin: 0 0 16px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  label { display: block; font-size: 13px; font-weight: 600; margin: 0 0 6px; color: var(--muted); }
+  select, textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  textarea { min-height: 120px; resize: vertical; }
+  .seg { display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .seg button { flex: 1; border: 0; background: var(--bg); color: var(--ink); padding: 10px 8px; font: inherit; font-size: 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .field { margin-bottom: 14px; }
+  .steps { display: grid; gap: 12px; margin-top: 6px; }
+  .step { display: flex; gap: 12px; align-items: flex-start; }
+  .num { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 14px; display: grid; place-items: center; margin-top: 2px; }
+  .ai-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .toast { color: var(--ok); font-weight: 600; font-size: 14px; min-height: 1.4em; margin-top: 8px; }
+  pre { background: var(--code-bg); color: var(--code-ink); border-radius: 12px; padding: 14px 16px; overflow-x: auto; font: 13.5px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; margin: 8px 0 0; }
+  .copyrow { display: flex; gap: 8px; align-items: stretch; }
+  .copyrow pre { flex: 1; margin: 0; }
+  .copy-mini { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 10px; padding: 0 12px; cursor: pointer; font: inherit; font-size: 13px; }
+  .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 820px) { .how { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .how { grid-template-columns: 1fr; } }
+  .how h3 { margin: 0 0 4px; font-size: 16px; }
+  .how p { margin: 0; color: var(--muted); font-size: 15px; }
+  .scorecard { font: 13.5px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--code-bg); color: var(--code-ink); border-radius: 12px; padding: 16px; overflow-x: auto; white-space: pre; }
+  .scorecard .q { color: #ff8a95; }
+  .scorecard .g { color: #7ee2a8; }
+  .scorecard .d { color: #9aa1ab; }
+  footer { color: var(--muted); font-size: 14px; padding: 36px 0 48px; border-top: 1px solid var(--line); margin-top: 40px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#" aria-label="Murder Board">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><circle cx="9" cy="12" r="3" fill="#fff"/><circle cx="16" cy="10" r="3" fill="#fff"/><circle cx="23" cy="12" r="3" fill="#fff"/><rect x="6" y="19" width="20" height="4" rx="2" fill="#fff"/></svg>
+      <span>murder-board</span>
+    </a>
+    <div class="top-actions">
+      <button class="pill" id="lang" type="button" aria-label="Switch language">中文</button>
+      <a class="pill" id="star" href="https://github.com/MbappeWU/murder-board" target="_blank" rel="noopener">★ <span data-i18n="star">Star</span> <span id="stars"></span></a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow" data-i18n="eyebrow">Murder Board · 灵魂拷问</div>
+    <h1 data-i18n="h1">Get grilled by AI before you get grilled by humans.</h1>
+    <p class="lede" data-i18n="lede">The Pentagon rehearses generals with a “murder board” before they testify to Congress. This one reads your deck, asks the questions most likely to sink you, scores every answer and writes your prep sheet.</p>
+    <div class="cta">
+      <a class="btn primary" href="#try" data-i18n="cta1">Start a drill · free</a>
+      <a class="btn ghost" href="https://github.com/MbappeWU/murder-board" target="_blank" rel="noopener" data-i18n="cta2">★ Star on GitHub</a>
+    </div>
+  </div>
+
+  <section id="try" class="card" aria-labelledby="try-h">
+    <h2 id="try-h" data-i18n="tryTitle">Start in any AI chat, no install</h2>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <p class="skill-desc" id="skillDesc"></p>
+
+    <div id="mbFields" class="grid">
+      <div class="field">
+        <label for="scenario" data-i18n="scenario">Scenario</label>
+        <select id="scenario"></select>
+      </div>
+      <div class="field">
+        <label data-i18n="difficulty">Difficulty</label>
+        <div class="seg" id="difficulty" role="group"></div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="situation" data-i18n="situation">Your situation (optional, but the more specific the better)</label>
+      <textarea id="situation"></textarea>
+    </div>
+
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div>
+        <button class="btn primary" id="copyBtn" type="button" data-i18n="copy">Copy the prompt</button>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </div></div>
+      <div class="step"><div class="num">2</div><div>
+        <div data-i18n="paste">Open your AI, paste, send. Tip: voice mode makes it feel like the real room.</div>
+        <div class="ai-links" id="aiLinks"></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="agents-h">
+    <h2 id="agents-h" data-i18n="agentsTitle">Use Claude Code, Codex, Cursor, Gemini CLI or OpenClaw? Install once.</h2>
+    <div class="copyrow"><pre id="cmd1">npx skills add MbappeWU/murder-board</pre><button class="copy-mini" data-copy="cmd1" type="button" data-i18n="copyShort">Copy</button></div>
+    <p class="skill-desc" style="margin-top:12px" data-i18n="agentsAlt">Or paste this into your agent:</p>
+    <div class="copyrow"><pre id="cmd2">Install the murder-board skills from https://github.com/MbappeWU/murder-board (follow INSTALL.md)</pre><button class="copy-mini" data-copy="cmd2" type="button" data-i18n="copyShort">Copy</button></div>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <h2 id="how-h" data-i18n="howTitle">What happens in a drill</h2>
+    <div class="how" id="how"></div>
+  </section>
+
+  <section aria-labelledby="card-h">
+    <h2 id="card-h" data-i18n="cardTitle">Every answer gets a score card</h2>
+    <div class="scorecard" id="scorecard"></div>
+  </section>
+
+  <footer>
+    <span>MIT · <a href="https://github.com/MbappeWU/murder-board">github.com/MbappeWU/murder-board</a></span>
+    <span data-i18n="privacy">Runs inside your own AI. This page stores nothing and sends nothing.</span>
+  </footer>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("data").textContent);
+  var REPO = "MbappeWU/murder-board";
+
+  var T = {
+    en: {
+      eyebrow: "Murder Board · 灵魂拷问",
+      h1: "Get grilled by AI before you get grilled by humans.",
+      lede: "The Pentagon rehearses generals with a “murder board” before they testify to Congress. This one reads your deck, asks the questions most likely to sink you, scores every answer and writes your prep sheet.",
+      cta1: "Start a drill · free", cta2: "★ Star on GitHub", star: "Star",
+      tryTitle: "Start in any AI chat, no install", scenario: "Scenario", difficulty: "Difficulty",
+      situation: "Your situation (optional, but the more specific the better)",
+      copy: "Copy the prompt", copied: "Copied. Now paste it into your AI.", copyFail: "Couldn't copy automatically. Select the text and copy it manually.",
+      paste: "Open your AI, paste, send. Tip: voice mode makes it feel like the real room.",
+      agentsTitle: "Use Claude Code, Codex, Cursor, Gemini CLI or OpenClaw? Install once.",
+      agentsAlt: "Or paste this into your agent:", copyShort: "Copy",
+      howTitle: "What happens in a drill", cardTitle: "Every answer gets a score card",
+      privacy: "Runs inside your own AI. This page stores nothing and sends nothing.",
+      placeholder: {
+        "murder-board": "Thursday: exec review with the CEO, CFO and VP Eng. I'm asking for 4 engineers for the payments rewrite. Last quarter we shipped 2 of 5 commitments. Deck outline: …",
+        "pre-mortem": "We're launching a paid tier in 8 weeks with 3 engineers. Success = 500 paying teams by end of Q1. The plan: …",
+        "boardroom": "Should I accept a Head of Product offer at a 40-person startup or stay for a likely promotion? I'm leaning toward the startup because …",
+        "so-what": "Paste the update, email, report or weekly report you want to make exec-ready …",
+        "sparring": "I need to ask my manager for a promotion. She's supportive but always says the budget is frozen. I want a date in writing. Walk-away: …"
+      },
+      difficulties: [["Friendly", "Friendly"], ["Realistic", "Realistic"], ["Brutal", "Brutal"]],
+      firstMsg: function (s) {
+        var lines = [];
+        if (s.skill === "murder-board") {
+          lines.push("Scenario: " + s.scenarioLabel + ". Difficulty: " + s.difficulty + ".");
+        }
+        lines.push(s.situation ? "My situation: " + s.situation : "I'll describe my situation when you ask.");
+        lines.push("Begin with step 1. Skip any question my situation already answers.");
+        return lines.join("\n");
+      },
+      how: [
+        ["Recon", "Reads your deck or doc like an opponent: the ask, numbers that don't reconcile, the gaps, what the room already believes."],
+        ["The panel", "3–5 people who'd really be in the room: CFO, skeptic, your boss. Describe your real boss and they get a seat."],
+        ["The kill list", "15–25 questions ranked by Kill Score = likelihood × damage. Hidden until the end, like the real thing."],
+        ["The drill", "One question at a time, in character. Dodge and it follows up. Ramble on Brutal and it interrupts."],
+        ["Score cards", "Directness, Evidence, Honesty, Brevity, Composure, plus “Say this instead”."],
+        ["Prep sheet", "Readiness score, the 3 landmines, 10 must-nail answers, what to bring, your first 30 seconds."]
+      ],
+      card: [
+        ["q", "Priya Raman, CEO: You're asking for four engineers. Last quarter you shipped"],
+        ["q", "two of five commitments. Why should I believe this plan?"],
+        ["", ""],
+        ["", "Directness ●○○○○  Evidence ●○○○○  Honesty ●●●○○  Brevity ●●○○○  Composure ●●●○○"],
+        ["d", "Diagnosis: you opened with excuses. She asked “why believe you”, not “what went wrong”."],
+        ["g", "Say this instead: “Fair. We shipped 2 of 5 because I underestimated the migration"],
+        ["g", "by six weeks. This plan has a 3-week buffer and a checkpoint: two engineers now,"],
+        ["g", "two more only if we hit [milestone] by [date].”"]
+      ]
+    },
+    zh: {
+      eyebrow: "灵魂拷问 · Murder Board",
+      h1: "在老板拷问你之前，先让 AI 灵魂拷问你。",
+      lede: "美军将领去国会作证前，要先过一轮“Murder Board”：一群专门挑刺的人，把最狠的问题先问一遍。它会读你的材料，找出最可能让你翻车的问题，逐个追问、逐题打分，最后给你一页备答清单。",
+      cta1: "免费开始拷问", cta2: "★ 在 GitHub 上 Star", star: "Star",
+      tryTitle: "复制到任何 AI 对话框就能用，无需安装", scenario: "场景", difficulty: "难度",
+      situation: "你的情况（选填，越具体，问题越狠）",
+      copy: "复制提示词", copied: "已复制，去 AI 对话框粘贴发送即可。", copyFail: "自动复制失败，请手动选中文本复制。",
+      paste: "打开你常用的 AI，粘贴并发送。小技巧：用语音模式，更像真实会场。",
+      agentsTitle: "用 Claude Code、Codex、Cursor、Gemini CLI 或 OpenClaw？一次安装：",
+      agentsAlt: "或者把这句话发给你的 Agent：", copyShort: "复制",
+      howTitle: "一次拷问会发生什么", cardTitle: "每个回答都有一张评分卡",
+      privacy: "全部在你自己的 AI 里运行；本页面不存储、不上传任何内容。",
+      placeholder: {
+        "murder-board": "例：下周三向一把手汇报明年座舱项目立项，申请 2000 万预算和 15 个编制。去年同类项目预测 2000 万收入，实际 600 万。我最怕被问……",
+        "pre-mortem": "例：我们计划 8 周内上线付费版，3 个研发。成功标准是一季度末 500 个付费团队。计划是……",
+        "boardroom": "例：要不要接一家 40 人创业公司的产品负责人 offer，还是留在现公司等晋升？我倾向去创业公司，因为……",
+        "so-what": "把要改的汇报、周报、邮件或方案粘贴到这里……",
+        "sparring": "例：我要找领导谈加薪。她人不错，但总说预算冻结了。我希望拿到一个明确的时间点。我的底线是……"
+      },
+      difficulties: [["Friendly", "友好"], ["Realistic", "真实"], ["Brutal", "魔鬼"]],
+      firstMsg: function (s) {
+        var lines = [];
+        if (s.skill === "murder-board") {
+          lines.push("场景：" + s.scenarioLabel + "。难度：" + s.difficultyLabel + "。");
+        }
+        lines.push(s.situation ? "我的情况：" + s.situation : "我会在你提问时说明我的情况。");
+        lines.push("请从第 1 步开始。我已经说明的信息不用再问。");
+        return lines.join("\n");
+      },
+      how: [
+        ["侦察", "像对手一样读你的材料：你要什么、哪些数字对不上、缺了什么、听众心里已经认定了什么。"],
+        ["评审团", "3–5 个真正会在场的人：一把手、财务、专家、兄弟部门。描述你的真实领导，他也会入席。"],
+        ["必死题清单", "15–25 道题，按致命度 = 可能性 × 伤害排序。和真实场景一样，结束前不剧透。"],
+        ["逐题拷问", "一次只问一题。你回避，它追问；在魔鬼难度下你说太长，它会直接打断。"],
+        ["评分卡", "直接性、证据、诚实、简洁、镇定五个维度，外加一句“你应该这么说”。"],
+        ["备答清单", "准备度评分、3 个地雷、10 个必答口径、要带的数据、开场 30 秒怎么说。"]
+      ],
+      card: [
+        ["q", "王总（一把手）：你们要 15 个编制。去年定的 5 件事只完成了 2 件，"],
+        ["q", "我凭什么相信这次的计划？"],
+        ["", ""],
+        ["", "直接性 ●○○○○  证据 ●○○○○  诚实 ●●●○○  简洁 ●●○○○  镇定 ●●●○○"],
+        ["d", "诊断：你一开口就在解释原因。王总问的是“凭什么信你”，不是“为什么没完成”。"],
+        ["g", "你应该这么说：“您问得对。去年只完成 2 件，是因为我把迁移工作量低估了 6 周。"],
+        ["g", "这次留了 3 周缓冲，并设了检查点：先给 8 个编制，[某节点] 按期达成，"],
+        ["g", "再补其余 7 个。”"]
+      ]
+    }
+  };
+
+  var SCENARIOS = [
+    ["exec-review", "Exec / leadership review", "向领导汇报（方案 / 项目进展）"],
+    ["budget-ask", "Budget or headcount ask", "申请预算 / 编制"],
+    ["efficiency-review", "Justify team efficiency to an executive", "效能质询（向高层解释团队效能）"],
+    ["board-meeting", "Board meeting / QBR", "董事会 / 季度经营会"],
+    ["investor-pitch", "Investor pitch", "投资人路演"],
+    ["job-interview", "Job interview", "求职面试"],
+    ["promo-committee", "Promotion committee", "晋升答辩"],
+    ["thesis-defense", "Thesis or PhD defense", "论文答辩 / 开题答辩"],
+    ["design-review", "Design or architecture review", "技术方案评审"],
+    ["product-review", "PRD or launch review", "产品需求 / 上线评审"],
+    ["sales-pitch", "Customer pitch", "客户提案"],
+    ["all-hands", "All-hands Q&A", "全员大会答疑"],
+    ["press", "Press interview or crisis", "媒体采访 / 危机回应"],
+    ["述职", "Annual self-review (述职)", "述职 / 年终述职"],
+    ["竞聘答辩", "Internal promotion contest (竞聘)", "竞聘答辩"],
+    ["立项评审", "Project approval review (立项评审)", "立项评审 / 项目评审"],
+    ["结构化面试", "Structured interview (civil service)", "结构化面试（考公 / 事业单位）"],
+    ["考研复试", "Graduate school interview", "考研复试 / 保研面试"],
+    ["other", "Other (describe it below)", "其他（在下面描述）"]
+  ];
+  var SKILL_LABELS = {
+    "murder-board": ["Murder Board", "灵魂拷问"],
+    "pre-mortem": ["Pre-mortem", "事前验尸"],
+    "boardroom": ["Boardroom", "私董会"],
+    "so-what": ["So What?", "说人话"],
+    "sparring": ["Sparring", "高难度对话陪练"]
+  };
+  var SKILL_BLURB = {
+    "murder-board": ["A hostile-but-fair panel grills you before the real meeting, scores every answer, and writes your prep sheet.", "魔鬼评审团在真实会议前把你拷问一遍，逐题打分，最后给你备答清单。"],
+    "pre-mortem": ["It's six months later and the plan failed. Why? Failure stories, early warnings, tripwires.", "假设计划已经失败，倒推原因：失败故事、预警信号、止损线。"],
+    "boardroom": ["Five directors who disagree with each other and with you, a vote with dissent, and the Chair's verdict.", "五位立场不同的董事独立发表意见、互相质询、投票，最后由主席给出建议。"],
+    "so-what": ["Makes any update, report or email exec-ready: answer first, three lengths, and a red-pen report.", "把汇报、周报、邮件改成结论先行：一句话版、三行版、完整版，外加红笔修改说明。"],
+    "sparring": ["The AI plays the other person in a hard conversation (a raise, feedback, a layoff, a negotiation), then scores you.", "AI 扮演对方（谈加薪、绩效面谈、裁员沟通、谈判），练完给你打分和真实对话脚本。"]
+  };
+  var AIS = [
+    ["ChatGPT", "https://chatgpt.com/"], ["Claude", "https://claude.ai/new"], ["Gemini", "https://gemini.google.com/app"],
+    ["DeepSeek", "https://chat.deepseek.com/"], ["Kimi", "https://www.kimi.com/"], ["豆包", "https://www.doubao.com/chat/"],
+    ["Qwen", "https://chat.qwen.ai/"], ["元宝", "https://yuanbao.tencent.com/"]
+  ];
+
+  var state = { lang: "en", skill: "murder-board", scenario: "exec-review", difficulty: "Realistic" };
+  try {
+    var saved = localStorage.getItem("mb-lang");
+    state.lang = saved || (/^zh/i.test(navigator.language || "") ? "zh" : "en");
+  } catch (e) {
+    state.lang = /^zh/i.test(navigator.language || "") ? "zh" : "en";
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+  var L = function () { return state.lang === "zh" ? 1 : 0; };
+
+  function render() {
+    var t = T[state.lang];
+    document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      if (typeof t[key] === "string") el.textContent = t[key];
+    });
+    $("lang").textContent = state.lang === "zh" ? "English" : "中文";
+
+    var tabs = $("tabs"); tabs.innerHTML = "";
+    DATA.skills.forEach(function (s) {
+      var b = document.createElement("button");
+      b.className = "tab"; b.type = "button"; b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", String(s.name === state.skill));
+      b.textContent = (SKILL_LABELS[s.name] || [s.name, s.name])[L()];
+      b.onclick = function () { state.skill = s.name; render(); };
+      tabs.appendChild(b);
+    });
+    $("skillDesc").textContent = (SKILL_BLURB[state.skill] || ["", ""])[L()];
+    $("mbFields").style.display = state.skill === "murder-board" ? "" : "none";
+
+    var sel = $("scenario"); sel.innerHTML = "";
+    SCENARIOS.forEach(function (sc) {
+      var o = document.createElement("option");
+      o.value = sc[0]; o.textContent = sc[1 + L()];
+      if (sc[0] === state.scenario) o.selected = true;
+      sel.appendChild(o);
+    });
+
+    var seg = $("difficulty"); seg.innerHTML = "";
+    t.difficulties.forEach(function (d) {
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = d[1];
+      b.setAttribute("aria-pressed", String(d[0] === state.difficulty));
+      b.onclick = function () { state.difficulty = d[0]; render(); };
+      seg.appendChild(b);
+    });
+
+    $("situation").placeholder = t.placeholder[state.skill] || "";
+
+    var links = $("aiLinks"); links.innerHTML = "";
+    AIS.forEach(function (a) {
+      var el = document.createElement("a");
+      el.className = "pill"; el.href = a[1]; el.target = "_blank"; el.rel = "noopener"; el.textContent = a[0];
+      links.appendChild(el);
+    });
+
+    var how = $("how"); how.innerHTML = "";
+    t.how.forEach(function (h, i) {
+      var d = document.createElement("div"); d.className = "card";
+      var h3 = document.createElement("h3"); h3.textContent = (i + 1) + ". " + h[0];
+      var p = document.createElement("p"); p.textContent = h[1];
+      d.appendChild(h3); d.appendChild(p); how.appendChild(d);
+    });
+
+    var sc = $("scorecard"); sc.innerHTML = "";
+    t.card.forEach(function (line) {
+      var span = document.createElement("span");
+      if (line[0]) span.className = line[0];
+      span.textContent = line[1] + "\n";
+      sc.appendChild(span);
+    });
+    $("toast").textContent = "";
+  }
+
+  function buildPrompt() {
+    var t = T[state.lang];
+    var skill = DATA.skills.filter(function (s) { return s.name === state.skill; })[0];
+    var body = state.lang === "zh" ? (skill.zh || skill.en) : skill.en;
+    body = body.replace(/^<!--[\s\S]*?-->\s*/, "");
+    var sc = SCENARIOS.filter(function (x) { return x[0] === state.scenario; })[0];
+    var diff = t.difficulties.filter(function (d) { return d[0] === state.difficulty; })[0];
+    var first = t.firstMsg({
+      skill: state.skill,
+      scenarioLabel: sc ? sc[1 + L()] : state.scenario,
+      difficulty: state.difficulty,
+      difficultyLabel: diff ? diff[1] : state.difficulty,
+      situation: $("situation").value.trim()
+    });
+    return body.trim() + "\n\n---\n\n" + first + "\n";
+  }
+
+  function copyText(text, done) {
+    var fallback = function () {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      done(ok);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  $("copyBtn").onclick = function () {
+    var t = T[state.lang];
+    copyText(buildPrompt(), function (ok) { $("toast").textContent = ok ? t.copied : t.copyFail; });
+  };
+  $("scenario").onchange = function (e) { state.scenario = e.target.value; };
+  $("lang").onclick = function () {
+    state.lang = state.lang === "zh" ? "en" : "zh";
+    try { localStorage.setItem("mb-lang", state.lang); } catch (e) { /* storage unavailable */ }
+    render();
+  };
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.onclick = function () {
+      var t = T[state.lang];
+      copyText($(btn.getAttribute("data-copy")).textContent, function (ok) {
+        btn.textContent = ok ? "✓" : "×";
+        setTimeout(function () { btn.textContent = t.copyShort; }, 1500);
+      });
+    };
+  });
+
+  fetch("https://api.github.com/repos/" + REPO)
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || typeof d.stargazers_count !== "number") return;
+      var n = d.stargazers_count;
+      $("stars").textContent = n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, "") + "k" : String(n);
+    })
+    .catch(function () { /* offline or rate-limited: keep the plain Star label */ });
+
+  render();
+})();
+</script>
+</body>
+</html>

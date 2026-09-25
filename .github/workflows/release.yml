@@ -1,0 +1,30 @@
+name: Release assets
+
+# When a release is published, attach one zip per skill (the format Claude.ai's
+# Settings → Capabilities → Skills upload expects) plus a zip of all skills.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Zip each skill
+        run: |
+          mkdir -p dist
+          cd skills
+          for dir in */; do
+            name="${dir%/}"
+            zip -qr "../dist/${name}.zip" "$name"
+          done
+          cd ..
+          zip -qr dist/all-skills.zip skills
+      - name: Upload to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" dist/*.zip --clobber --repo "${{ github.repository }}"

@@ -1,0 +1,29 @@
+name: 🔪 Killer question
+description: Share a question that sank someone (or nearly did). The best ones join the question banks.
+title: "[Killer question] "
+labels: ["killer-question"]
+body:
+  - type: input
+    id: situation
+    attributes:
+      label: The situation
+      placeholder: "Budget review with the CFO, asking for 3 more engineers"
+    validations:
+      required: true
+  - type: input
+    id: asker
+    attributes:
+      label: Who asked it
+      placeholder: "CFO / hiring manager / thesis committee chair / 一把手"
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: The question, as close to word-for-word as you remember
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it was deadly, and what a good answer would have been

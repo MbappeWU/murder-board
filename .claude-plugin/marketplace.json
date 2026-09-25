@@ -1,0 +1,24 @@
+{
+  "name": "murder-board",
+  "owner": {
+    "name": "MbappeWU",
+    "url": "https://github.com/MbappeWU"
+  },
+  "metadata": {
+    "description": "Adversarial prep skills for high-stakes work: murder-board, pre-mortem, boardroom, so-what, sparring.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "murder-board",
+      "source": "./",
+      "description": "Get grilled by AI before you get grilled by humans. Rehearsal panel for exec reviews, pitches, interviews and defenses, plus pre-mortem, boardroom, so-what and sparring.",
+      "version": "1.0.0",
+      "author": {
+        "name": "MbappeWU"
+      },
+      "category": "productivity",
+      "keywords": ["interview-prep", "presentation", "leadership", "decision-making", "negotiation"]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "murder-board",
+  "version": "1.0.0",
+  "description": "Get grilled by AI before you get grilled by humans. A hostile-but-fair rehearsal panel for exec reviews, pitches, interviews and defenses, plus pre-mortem, boardroom, so-what and sparring.",
+  "author": {
+    "name": "MbappeWU",
+    "url": "https://github.com/MbappeWU"
+  },
+  "homepage": "https://github.com/MbappeWU/murder-board",
+  "repository": "https://github.com/MbappeWU/murder-board",
+  "license": "MIT",
+  "keywords": [
+    "murder-board",
+    "interview-prep",
+    "presentation",
+    "leadership",
+    "management",
+    "decision-making",
+    "pre-mortem",
+    "negotiation",
+    "skills"
+  ]
+}
