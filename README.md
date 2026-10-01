@@ -87,11 +87,12 @@ Pick one, or just describe the room.
 | Promotion committee | `promo-committee` | Chair · Skip-level · Skeptic · HR |
 | Thesis or PhD defense | `thesis-defense` | Chair · Methods expert · Outside member |
 | Design or architecture review | `design-review` | Principal engineer · On-call owner · Security |
+| Outage postmortem | `incident-review` | Eng leader · SRE · Customer-facing lead · Peer lead |
 | PRD or launch review | `product-review` | Product lead · Customer · Engineering · Data |
 | Sales pitch | `sales-pitch` | Economic buyer · Skeptical boss · End user · Procurement |
 | All-hands Q&A | `all-hands` | Two employees · HR · Skeptic |
 | Press or crisis | `press` | Journalist · Skeptic · Legal |
-| 述职 · 竞聘 · 立项评审 · 结构化面试 · 考研复试 | Chinese presets | Run entirely in Chinese |
+| 述职 · 竞聘 · 立项评审 · 课题申报答辩 · 结构化面试 · 考研复试 | Chinese presets | Run entirely in Chinese |
 
 ## The rest of the kit
 

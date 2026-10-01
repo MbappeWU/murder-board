@@ -4,7 +4,7 @@ description: Imagine the plan has already failed, then work backwards to why. Ru
 license: MIT
 metadata:
   author: MbappeWU
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Pre-mortem

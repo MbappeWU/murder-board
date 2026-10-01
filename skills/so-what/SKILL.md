@@ -4,7 +4,7 @@ description: Make any update, report, email, memo, deck outline or weekly report
 license: MIT
 metadata:
   author: MbappeWU
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # So What?

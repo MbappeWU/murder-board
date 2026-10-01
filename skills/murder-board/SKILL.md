@@ -4,7 +4,7 @@ description: Hostile-but-fair rehearsal panel that grills the user before a high
 license: MIT
 metadata:
   author: MbappeWU
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Murder Board
