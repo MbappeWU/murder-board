@@ -95,6 +95,17 @@ If the user names a situation that isn't here, pick the closest preset and adjus
   - "What's the smallest version that tests the riskiest assumption?"
   - "What are you saying no to?"
 
+## incident-review: postmortem for an outage or serious incident
+- **Seats:** VP or Head of Engineering · SRE or Platform Lead · Product or Customer-facing Lead · Peer team lead
+- **Really deciding:** do we understand why it happened, and will the fixes stop it happening again?
+- **Decisive questions:**
+  - "Why didn't an alert fire before customers noticed?"
+  - "Why did this change ship without a canary or staged rollout?"
+  - "What stops this from happening next month, and who owns that action by what date?"
+  - "Is this the same root cause as the incident in [month]?"
+  - "What did customers see, and what did we tell them?"
+- **Rules:** blameless means no personal blame, not no accountability. Action items with no owner or date, and "human error" as a root cause, are fair game.
+
 ## efficiency-review: justifying a team's efficiency or performance to a skeptical executive (效能质询)
 - **Seats:** The Boss (already believes efficiency fell) · HR / People partner (owns the headcount model) · CFO · Technical Expert
 - **Really deciding:** is the extra headcount or cost justified by extra output, and should we keep funding this team?
@@ -166,6 +177,17 @@ Run these entirely in Chinese.
 
 ## 论文答辩 / 开题答辩
 - 同 `thesis-defense`，全程中文；增加"创新点到底是什么""和已有工作相比提升了多少"。
+
+## 课题申报答辩 / 基金申报答辩
+- **席位：** 同行评审专家 · 管理部门代表 · 财务或预算专家 · 方向外的专家
+- **真正在判断：** 创新点是不是真的新？三年内做不做得完？钱花得合不合理？
+- **决定性问题：**
+  - "这和你们（或者某某组）已有的工作，本质区别是什么？"
+  - "三年做完这些，前期数据在哪里？"
+  - "预算里设备费为什么占这么高？"
+  - "考核指标完不成怎么办？最可能卡在哪一步？"
+  - "团队里谁负责哪一块？谁是关键人，他走了怎么办？"
+- **规则：** 只有愿景没有前期结果、创新点说不清和已有工作的区别、预算与任务对不上，都是重点攻击对象。
 
 ## 结构化面试 (考公、事业单位、国企)
 - **席位：** 主考官 · 副考官 ×2

@@ -4,7 +4,7 @@ description: Rehearse a hard one-on-one conversation against a realistic counter
 license: MIT
 metadata:
   author: MbappeWU
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Sparring
